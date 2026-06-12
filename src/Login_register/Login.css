@@ -1,0 +1,62 @@
+.loginouter {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+.logininner {
+  width: 100%;
+  height: 20%;
+  background-color: rgba(17, 1, 66, 0.894);
+  display: flex;
+ color: white;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.formdiv {
+  width: 35%;
+  
+  height: 40%;
+  display: flex;
+   background-color: rgba(15, 5, 45, 0.218);
+  align-items: first baseline;
+  justify-content: space-evenly;
+  padding: 50px;
+  border-radius: 30px;
+}
+.formdiv label {
+  width: 100px;
+  height: 100%;
+}
+.formdiv input {
+  width: 250px;
+  height: 30px;
+  margin: 15px;
+  border-radius: 10px;
+  padding: 10px;
+  
+}
+.loginbtn {
+  width: 50%;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6rem;
+  margin-top: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.872);
+  color: white;
+}
+.accountbtn {
+  border: none;
+  background-color: transparent;
+  margin-left: 7.5rem;
+ position: relative;
+ bottom: 15px;
+}
