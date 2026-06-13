@@ -8,25 +8,25 @@ function Loginpage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  async function loginfetch (e) {
+  async function loginfetch(e) {
     e.preventDefault();
-    try{
-    const responselogin = await axios.post("https://student-management-system-backend-1-0k5g.onrender.com/api/login", {
-      username: username,
-      password: password
-    });
-    if(responselogin.data.toLowerCase().includes("success")){
-      console.log("before")
-       navigate("/dashboard");
-      console.log("after")
-    }else{
-      alert(responselogin.data);
+    try {
+      const responselogin = await axios.post(
+        "https://student-management-system-backend-1-0k5g.onrender.com/api/login",
+        {
+          username: username,
+          password: password,
+        }
+      );
+       localStorage.setItem("token", responselogin.data.token);
+       localStorage.setItem("user", responselogin.data.message);
+        navigate("/dashboard");
+        console.log("after");
+    } catch (error) {
+      alert("Login failed. Please check your credentials and try again.");
     }
-  } catch(error){
-   alert("Login failed. Please check your credentials and try again.");
-  }}
-     
-     
+  }
+
   return (
     <div className="loginouter">
       <div className="logininner">
@@ -39,7 +39,7 @@ function Loginpage() {
       </div>
 
       <div className="formdiv">
-        <form onSubmit={ loginfetch}>
+        <form onSubmit={loginfetch}>
           <label>UserName : </label>
           <input
             type="text"
@@ -57,7 +57,7 @@ function Loginpage() {
           ></input>
           <br />
           <button className="loginbtn" type="submit">
-              Login
+            Login
           </button>
           <br />
         </form>
