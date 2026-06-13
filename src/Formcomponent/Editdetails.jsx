@@ -22,15 +22,21 @@ function Edit(){
   }
     
     useEffect(() => {
-        axios.get(`https://student-management-system-backend-1-0k5g.onrender.com/students/${id}`)
+        const token=localStorage.getItem("token");
+        axios.get(`https://student-management-system-backend-1-0k5g.onrender.com/students/${id}`, {
+          headers: {Authorization: `Bearer ${token}`}
+        })
           .then(response => {
             setData(response.data);
           });
       }, [id]);
       async function handleEdit(e){
+        const token=localStorage.getItem("token");
         e.preventDefault();
         try{
-            await axios.put(`https://student-management-system-backend-1-0k5g.onrender.com/students/${id}`, data);
+            await axios.put(`https://student-management-system-backend-1-0k5g.onrender.com/students/${id}`, data, {
+              headers: {Authorization: `Bearer ${token}`}
+            });
             alert("edited");
             navigate("/dashboard");
         }catch(error){

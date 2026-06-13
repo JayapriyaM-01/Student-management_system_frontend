@@ -21,7 +21,10 @@ function Addstudentform() {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://student-management-system-backend-1-0k5g.onrender.com/students/add", studentdata);
+      const token = localStorage.getItem("token");
+      await axios.post("https://student-management-system-backend-1-0k5g.onrender.com/students/add", studentdata, {
+        headers: {Authorization: `Bearer ${token}`}
+      });
       alert("added");
       navigate("/dashboard");
     } catch (error) {

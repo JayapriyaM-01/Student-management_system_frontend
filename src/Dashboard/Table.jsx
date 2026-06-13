@@ -7,13 +7,20 @@ function Tables() {
   let rows = ["Id", "Name", "Department", "Email", "Phone", "Actions"];
   const [table, setTable] = useState([]);
   async function getData() {
-    const response = await axios.get("https://student-management-system-backend-1-0k5g.onrender.com/students");
+    const token=localStorage.getItem("token");
+    const response = await axios.get("https://student-management-system-backend-1-0k5g.onrender.com/students",
+      {headers: {Authorization: `Bearer ${token}`}
+    }
+    );
     const arrdata = response.data;
     setTable(arrdata);
   }
   async function handleDel(id) {
+    const token=localStorage.getItem("token");
     try {
-      await axios.delete(`https://student-management-system-backend-1-0k5g.onrender.com/students/${id}`);
+      await axios.delete(`https://student-management-system-backend-1-0k5g.onrender.com/students/${id}`, {
+        headers: {Authorization: `Bearer ${token}`}
+      });
       setTable(table.filter(student => student.id !== id));
       alert("deleted");
     } catch (error) {
