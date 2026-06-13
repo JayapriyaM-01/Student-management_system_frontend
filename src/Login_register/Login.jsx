@@ -11,7 +11,7 @@ function Loginpage() {
   async function loginfetch (e) {
     e.preventDefault();
     try{
-    const responselogin = await axios.post("http://localhost:8080/api/login", {
+    const responselogin = await axios.post("https://student-management-system-backend-1-0k5g.onrender.com/api/login", {
       username: username,
       password: password
     });
