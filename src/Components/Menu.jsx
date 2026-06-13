@@ -1,7 +1,16 @@
 import "./Navcss.css";
 import { BsMortarboardFill, BsTextIndentLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
-function Menulist() {
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+function Menulist({sidebaropen, setSidebarOpen}) {
+  if (!sidebaropen) return null;
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  function handlelogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  }
   return (
     <div>
       <div className="menulistbar">
@@ -11,24 +20,32 @@ function Menulist() {
             alignItems: "flex-start",
           }}
         >
-          <BsMortarboardFill className="hat" size={55} color="blue" />
+          <BsMortarboardFill className="hat" size={55}  />
           <p
-            style={{
-              marginTop: 15,
-              lineHeight: "1.5",
-              fontSize: 18.9,
-              fontWeight: "bold",
-            }}
+           className="collegename"
           >
             {" "}
             ABC Engineering College{" "}
           </p>
         </div>
         <div className="menulist">
-            <Link to={"/Dashboard"}>Dashboard</Link> <br/>
-            <Link to={"/viewstudents"}>View Students</Link><br/>
-            <Link to={"/Add"}>Add Students</Link>
-
+          <NavLink to={"/Dashboard"} className="dash">Dashboard</NavLink> <br />
+          <div
+            onMouseEnter={() => setDropdownOpen(true)}
+            onMouseLeave={() => setDropdownOpen(false)}
+            style={{position:"relative", display:"inline-block"}}
+          >
+            <span>Students</span>
+            {dropdownOpen && (
+              <div className="dropdown">
+                <Link to={"/viewstudents"} > → View </Link>
+                <br />
+                <Link to={"/addstudent"}> → Add </Link>
+              </div>
+            )}
+          </div>
+          <br />
+          <span onClick={handlelogout} style={{cursor:"pointer"}}>Logout</span>
         </div>
       </div>
     </div>

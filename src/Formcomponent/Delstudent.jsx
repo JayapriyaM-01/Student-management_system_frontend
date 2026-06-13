@@ -1,3 +1,0 @@
-function Del(){
-    return()
-}

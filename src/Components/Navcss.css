@@ -20,14 +20,13 @@
     justify-content: flex-end;
    
 }
-#profilemenu{
+.profilemenu{
     height: 100%;
     width: 77%;
     display: flex;
     justify-content: flex-end;
     padding: 2px 30px;
     align-items: center;
- 
    
 }
 .Profileicon{   
@@ -35,6 +34,7 @@
     height: 50px;
     border-radius: 50%; 
     border: none;
+    
    
 }
 .drop{
@@ -42,12 +42,17 @@
    border: none;
    color: aliceblue;
 }
+.collegename{
+    margin-top: 15px;
+    line-height: 1.5;
+    font-size: 18.9px;
+    font-weight: bold;
+}
 .menuicon{
     width: 40px;
     height: 30px;
     background-color: transparent;
     border: none;
-   
 }
 .menulistbar{
     width: 18.5%;
@@ -56,18 +61,36 @@
     position: absolute;
     top: 0;
 }
-@media screen and (max-width:750px) {
-    .menulistbar{
-        display: none;
-    }
-    #menunav{
-        justify-content: flex-start;
-        padding: 20px;
-    }
+.menulist{
+    width: 18.5%;
+    height: 50%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 20px;
+    font-weight: bold;
+}
+.dropdown{
+  
+    left: 15px;
+    text-decoration: none;
+    min-width: 100px;
+    
+}
+.dropdown a{
+    text-decoration: none;
+    color: black;
+    
+}
+.dash{
+    text-decoration: none;
+    color: black;
     
 }
 .hat{
    margin: 17px 15px  ;
+   color: blue;
 }
 .menuoption{
     border: none;
@@ -80,3 +103,40 @@
     height: 50%;
     margin-top: 12px;
 }
+@media screen and (max-width:1200px) {
+    .menulistbar{
+        width:50%;
+        height: 100vh;
+        position: absolute;
+        top: 10.7%;
+        
+        background-color:rgb(0, 0, 255);
+        
+    }
+    .menulist{
+       font-size: 14px;
+    }
+    #menunav{
+        justify-content: flex-start;
+        padding: 20px;
+    }
+   
+    .Profileicon{
+        position: relative;
+      
+        
+    }
+    .collegename{
+        position: relative;
+      font-size: 13.5px;
+        
+    }
+    .hat{
+        color: aliceblue;
+        margin: 10px 10px;
+    }
+   
+    
+    
+}
+

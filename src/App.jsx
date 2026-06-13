@@ -1,7 +1,7 @@
 
 import './App.css'
 import NavBar from './Components/NavBar'
-import Menulist from './Components/Menu';
+
 function App() {
  
 
@@ -9,7 +9,7 @@ function App() {
     <>
     
       <NavBar/>
-      <Menulist/>
+   
     </>
   )
 }

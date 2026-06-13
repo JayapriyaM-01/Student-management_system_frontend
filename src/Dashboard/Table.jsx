@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 function Tables() {
-  let rows = ["Id", "Name", "Department", "Email", "Phone", "Actions"];
+  let rows = [ "Name", "Department", "Email", "Phone", "Actions"];
   const [table, setTable] = useState([]);
+  const [currentpage, setcurrentpage]=useState(1);
+  const studentsperpage=10;
   async function getData() {
     const token=localStorage.getItem("token");
     const response = await axios.get("https://student-management-system-backend-1-0k5g.onrender.com/students",
       {headers: {Authorization: `Bearer ${token}`}
     }
     );
-    const arrdata = response.data;
-    setTable(arrdata);
+    setTable(response.data) ;
   }
   async function handleDel(id) {
     const token=localStorage.getItem("token");
@@ -30,18 +31,22 @@ function Tables() {
   useEffect(() => {
     getData();
   }, []);
+  const lastIndex = currentpage * studentsperpage;
+  const firstIndex=lastIndex-studentsperpage;
+  const currentstudents = table.slice(firstIndex / studentsperpage);
+  const totalpages = Math.ceil(table.length/studentsperpage);
   return (
     <div>
       <table className="tabledesign">
         <thead>
           <tr>
             {rows.map((e) => (
-              <th>{e}</th>
+              <th className="tablename">{e}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {table.map((e, id) => (
+          {currentstudents.map((e, id) => (
             <tr key={e.id}>
               <td>{e.id}</td>
               <td>{e.name}</td>
@@ -58,6 +63,19 @@ function Tables() {
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        <button onClick={()=> setcurrentpage(currentpage-1)}disabled={currentpage===1}> ◂ prev</button>
+        {Array.from({length: totalpages}, (_, i) =>(
+          <button key={i}
+          onClick={()=>setcurrentpage(i+1)}
+          className={currentpage===i+1 ? "activepage" : ""}>
+            {i+1}
+
+          </button>
+        ))}
+        <button onClick={()=>setcurrentpage(currentpage +1)}
+          disabled={currentpage===totalpages}>Next ▸</button>
+      </div>
     </div>
   );
 }
