@@ -40,7 +40,7 @@ function Menulist({sidebaropen, setSidebarOpen}) {
               <div className="dropdown">
                 <Link to={"/viewstudents"} > → View </Link>
                 <br />
-                <Link to={"/addstudent"}> → Add </Link>
+                <Link to={"/Add"}> → Add </Link>
               </div>
             )}
           </div>
